@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace HelloWorld
 {
@@ -6,12 +7,16 @@ namespace HelloWorld
     {
         static void Main(string[] args)
         {
+            string userColor;
             if (args.Length == 0)
             {
                 Console.WriteLine("There are no command line arguments");
             }
             else
             {
+                Console.WriteLine("Please enter your name...");
+                var userName = Console.ReadLine();
+                Console.WriteLine($"{userName} welcome to the app!");
                 Console.WriteLine("Please choose a greeting:");
                 for (var i = 0; i < args.Length; i++)
                 {
@@ -34,9 +39,18 @@ namespace HelloWorld
                         break;
                 }
             }
-
+            Console.WriteLine("Please enter your favorite color!");
+            userColor = Console.ReadLine();
             var animals = new string[] { "Triceratops", "Gorilla", "Corgi", "Toucan" };
-
+            Console.WriteLine("Would you like a random animal with your favorite color?");
+            Console.WriteLine("y/n");
+            var enteredKey = Console.ReadKey();
+            if (enteredKey.Key.ToString() != "N")
+            {
+                Random rnd = new Random();
+                var randomIndex = rnd.Next(0, 3);
+                Console.WriteLine($"I have randomly chosen a {userColor} {animals[randomIndex]}");
+            }
             foreach (var animal in animals)
             {
                 if (animal.Length > 5)
